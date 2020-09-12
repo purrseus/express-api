@@ -22,6 +22,8 @@ module.exports.create = async (req, res) => {
   const newUser = new User({
     name: req.body.name,
     username: req.body.username,
+    birthday: req.body.birthday,
+    gender: req.body.gender,
     email: req.body.email,
     phone: req.body.phone,
     password: req.body.password

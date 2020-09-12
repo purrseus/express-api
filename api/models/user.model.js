@@ -11,6 +11,16 @@ const userSchema = new mongoose.Schema({
     require: true
   },
 
+  birthday: {
+    type: String,
+    require: true
+  },
+
+  gender: {
+    type: String,
+    require: true
+  },
+
   email: {
     type: String,
     require: true
