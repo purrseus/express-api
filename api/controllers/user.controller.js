@@ -7,31 +7,55 @@ module.exports.users = async (req, res) => {
     const users = await User.find();
     res.json(users);
   } catch (error) {
-    res.json({ message: err });
+    res.json({ message: error });
+  }
+};
+
+module.exports.findById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    res.json(user);
+  } catch (error) {
+    res.json({ message: error });
   }
 };
 
 module.exports.create = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    req.body.password = hashedPassword;      
+    req.body.password = hashedPassword;
+
+    const savedUser = await User.create(req.body);
+    res.json(savedUser);    
   } catch (error) {
-    console.log(err);
+    res.json({ message: error });
   }
+};
 
-  const newUser = new User({
-    name: req.body.name,
-    username: req.body.username,
-    birthday: req.body.birthday,
-    gender: req.body.gender,
-    email: req.body.email,
-    phone: req.body.phone,
-    password: req.body.password
-  });
-
+module.exports.update = async (req, res) => {
   try {
-    const savedUser = await newUser.save();
-    res.json(savedUser);
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    req.body.password = hashedPassword;
+    
+    const updatedUser = await User.updateOne(
+      { _id: req.params.id },
+      {
+        $set: {
+          username: req.body.username,
+          password: req.body.password
+        }
+      }
+    );
+    res.json(updatedUser);
+  } catch (error) {
+    res.json({ message: error });
+  }
+};
+
+module.exports.delete = async (req, res) => {
+  try {
+    const removedUser = await User.remove({ _id: req.params.id });
+    res.json(removedUser);
   } catch (error) {
     res.json({ message: error });
   }

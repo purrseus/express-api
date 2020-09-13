@@ -5,21 +5,51 @@ module.exports.products = async (req, res) => {
     const products = await Product.find();
     res.json(products);
   } catch (error) {
-    res.json({ message: err });
+    res.json({ message: error });
+  }
+};
+
+module.exports.findById = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    res.json(product);
+  } catch (error) {
+    res.json({ message: error });
   }
 };
 
 module.exports.create = async (req, res) => {
-  const newUser = new User({
-    image: req.body.image,
-    name: req.body.name,
-    quantity: req.body.quantity,
-    price: req.body.price,
-  });
-
   try {
-    const savedProduct = await newProduct.save();
+    const savedProduct = await Product.create(req.body);
     res.json(savedProduct);
+  } catch (error) {
+    res.json({ message: error });
+  }
+};
+
+module.exports.update = async (req, res) => {
+  try {
+    const updatedProduct = await Product.updateOne(
+      { _id: req.params.id },
+      {
+        $set: {
+          image: req.body.image,
+          name: req.body.name,
+          quantity: req.body.quantity,
+          price: req.body.price,
+        }
+      }
+    );
+    res.json(updatedProduct);
+  } catch (error) {
+    res.json({ message: error });
+  }
+};
+
+module.exports.delete = async (req, res) => {
+  try {
+    const removedProduct = await Product.remove({ _id: req.params.id });
+    res.json(removedProduct);
   } catch (error) {
     res.json({ message: error });
   }

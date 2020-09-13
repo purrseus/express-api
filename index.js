@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 require('dotenv').config();
 
 // IMPORT ROUTES
@@ -8,7 +9,8 @@ const productRoute = require('./api/routes/product.route');
 
 const app = express();
 
-// 
+app.use(cors());
+
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
