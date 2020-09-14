@@ -35,6 +35,7 @@ module.exports.update = async (req, res) => {
         $set: {
           image: req.body.image,
           name: req.body.name,
+          description: req.body,description,
           quantity: req.body.quantity,
           price: req.body.price,
         }

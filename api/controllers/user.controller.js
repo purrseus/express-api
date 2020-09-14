@@ -26,7 +26,7 @@ module.exports.create = async (req, res) => {
     req.body.password = hashedPassword;
 
     const savedUser = await User.create(req.body);
-    res.json(savedUser);    
+    res.json(savedUser); 
   } catch (error) {
     res.json({ message: error });
   }
@@ -36,15 +36,10 @@ module.exports.update = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     req.body.password = hashedPassword;
-    
+
     const updatedUser = await User.updateOne(
       { _id: req.params.id },
-      {
-        $set: {
-          username: req.body.username,
-          password: req.body.password
-        }
-      }
+      { $set: { password: req.body.password } }
     );
     res.json(updatedUser);
   } catch (error) {
