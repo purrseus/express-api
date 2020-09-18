@@ -18,6 +18,19 @@ module.exports.findById = async (req, res) => {
   }
 };
 
+module.exports.search = async (req, res) => {
+  const query = req.query.name;
+  try {
+    const products = await Product.find();
+    const filterProducts = products.filter((product) => {
+      return product.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    });
+    res.json(filterProducts);
+  } catch (error) {
+    res.json({ message: error });
+  }
+};
+
 module.exports.create = async (req, res) => {
   try {
     const savedProduct = await Product.create(req.body);

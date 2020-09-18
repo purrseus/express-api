@@ -24,6 +24,16 @@ const productSchema = new mongoose.Schema({
   price: {
     type: String,
     require: true
+  },
+  
+  rating: {
+    type: String,
+    require: true
+  },
+
+  reviews: {
+    type: String,
+    require: true
   }
 });
 

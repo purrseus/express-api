@@ -20,6 +20,19 @@ module.exports.findById = async (req, res) => {
   }
 };
 
+module.exports.search = async (req, res) => {
+  const query = req.query.name;
+  try {
+    const users = await User.find();
+    const filterUsers = users.filter((user) => {
+      return user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    });
+    res.json(filterUsers);
+  } catch (error) {
+    res.json({ message: error });
+  }
+};
+
 module.exports.create = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
