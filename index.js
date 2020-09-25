@@ -5,7 +5,7 @@ require('dotenv').config();
 
 // IMPORT ROUTES
 const userRoute = require('./api/routes/user.route');
-const productRoute = require('./api/routes/product.route');
+const galleryRoute = require('./api/routes/gallery.route');
 const paginationRoute = require('./api/routes/pagination.route');
 
 const app = express();
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/users', userRoute);
-app.use('/api/products', productRoute);
+app.use('/api/gallery', galleryRoute);
 app.use('/api/pagination', paginationRoute);
 
 mongoose.connect(process.env.MONGO_URI,
