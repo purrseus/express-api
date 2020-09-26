@@ -7,8 +7,8 @@ router.get('/categories', controller.categories);
 
 router.get('/all', controller.getAll);
 
-router.get('/:category', controller.products);
-
 router.get('/search', controller.search);
+
+router.get('/:category', controller.products);
 
 module.exports = router;
