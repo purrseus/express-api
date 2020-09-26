@@ -5,6 +5,7 @@ require('dotenv').config();
 
 // IMPORT ROUTES
 const userRoute = require('./api/routes/user.route');
+const productRoute = require('./api/routes/product.route');
 const galleryRoute = require('./api/routes/gallery.route');
 const paginationRoute = require('./api/routes/pagination.route');
 
@@ -23,7 +24,8 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.use('/api/users', userRoute);
+app.use('/api/user', userRoute);
+app.use('/api/shop', productRoute);
 app.use('/api/gallery', galleryRoute);
 app.use('/api/pagination', paginationRoute);
 
