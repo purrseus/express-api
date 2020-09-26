@@ -27,7 +27,7 @@ module.exports.products = async (req, res) => {
   const categoryName = req.params.name;
   try {
     const categories = await Product.find();
-    const category = categories.find(category => category.category === categoryName);
+    const category = categories.find(category => category.name === categoryName);
     res.json(category.products);
   } catch (error) {
     res.json({ message: error });
