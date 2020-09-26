@@ -24,7 +24,7 @@ module.exports.getAll = async (req, res) => {
 };
 
 module.exports.products = async (req, res) => {
-  const categoryName = req.params.name;
+  const categoryName = req.params.category;
   try {
     const categories = await Product.find();
     const category = categories.find(category => category.name === categoryName);
