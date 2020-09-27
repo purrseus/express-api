@@ -16,8 +16,7 @@ module.exports.getAll = async (req, res) => {
     const products = productList.reduce((acc, cur) => {
       return acc.concat(cur);
     }, []);
-    const filterProducts = products.filter(product => product.id < 4);
-    res.json(filterProducts);
+    res.json(products);
   } catch (error) {
     res.json({ message: error });
   }
