@@ -19,11 +19,11 @@ module.exports.findById = async (req, res) => {
 };
 
 module.exports.search = async (req, res) => {
-  const query = req.query.name;
+  const { name } = req.query;
   try {
     const gallery = await Gallery.find();
     const filterPhotos = gallery.filter((photo) => {
-      return photo.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+      return photo.name.toLowerCase().indexOf(name.toLowerCase()) !== -1;
     });
     res.json(filterPhotos);
   } catch (error) {

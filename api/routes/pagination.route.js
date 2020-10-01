@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const controller = require('../controllers/pagination.controller');
+const { pagination } = require('../controllers/pagination.controller');
 
-router.get('/', controller.pagination);
+router.get('/', pagination);
 
 module.exports = router;

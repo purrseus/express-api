@@ -60,7 +60,7 @@ module.exports.update = async (req, res) => {
   }
 };
 
-module.exports.delete = async (req, res) => {
+module.exports.remove = async (req, res) => {
   try {
     const removedUser = await User.remove({ _id: req.params.id });
     res.json(removedUser);

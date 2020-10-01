@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const controller = require('../controllers/gallery.controller');
+const { gallery, findById, search } = require('../controllers/gallery.controller');
 
-router.get('/all', controller.gallery);
+router.get('/all', gallery);
 
-router.get('/:id', controller.findById);
+router.get('/:id', findById);
 
-router.get('/', controller.search);
+router.get('/', search);
 
 module.exports = router;
